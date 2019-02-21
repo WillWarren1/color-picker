@@ -5,13 +5,23 @@ class App extends Component {
     backgroundHue: '196',
     backgroundSaturation: '12',
     backgroundLightness: '78',
-    colorOfText: 'black'
+    colorOfText: ''
   }
 
   updateHue = event => {
     this.setState({
       backgroundHue: event.target.value
     })
+    if (this.state.backgroundHue > 200) {
+      this.setState({
+        colorOfText: 'whitesmoke'
+      })
+    }
+    if (this.state.backgroundHue <= 200) {
+      this.setState({
+        colorOfText: 'black'
+      })
+    }
   }
   updateSaturation = event => {
     this.setState({
@@ -22,12 +32,18 @@ class App extends Component {
     this.setState({
       backgroundLightness: event.target.value
     })
-    if (this.state.backgroundLightness <= 40) {
+    if (
+      this.state.backgroundLightness <= 40 ||
+      this.state.backgroundHue > 210
+    ) {
       this.setState({
         colorOfText: 'whitesmoke'
       })
     }
-    if (this.state.backgroundLightness > 40) {
+    if (
+      this.state.backgroundLightness > 40 ||
+      this.state.backgroundHue <= 210
+    ) {
       this.setState({
         colorOfText: 'black'
       })
@@ -51,7 +67,7 @@ class App extends Component {
               onChange={this.updateHue}
               name="Hue"
               min="0"
-              max="360"
+              max="240"
             />
             <label style={{ color: `${this.state.colorOfText}` }}>
               Saturation
