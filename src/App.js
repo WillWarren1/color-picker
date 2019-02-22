@@ -5,7 +5,18 @@ class App extends Component {
     backgroundHue: '196',
     backgroundSaturation: '12',
     backgroundLightness: '78',
-    colorOfText: ''
+    colorOfText: '',
+    color: []
+  }
+
+  addColorToDOM = () => {
+    this.setState({
+      color: this.state.color.concat(
+        `hsl(${this.state.backgroundHue}, ${
+          this.state.backgroundSaturation
+        }%, ${this.state.backgroundLightness}%)`
+      )
+    })
   }
 
   updateHue = event => {
@@ -32,18 +43,12 @@ class App extends Component {
     this.setState({
       backgroundLightness: event.target.value
     })
-    if (
-      this.state.backgroundLightness <= 40 ||
-      this.state.backgroundHue > 210
-    ) {
+    if (this.state.backgroundLightness <= 40) {
       this.setState({
         colorOfText: 'whitesmoke'
       })
     }
-    if (
-      this.state.backgroundLightness > 40 ||
-      this.state.backgroundHue <= 210
-    ) {
+    if (this.state.backgroundLightness > 40) {
       this.setState({
         colorOfText: 'black'
       })
@@ -89,8 +94,24 @@ class App extends Component {
               min="0"
               max="100"
             />
+            <button onClick={this.addColorToDOM}>Save Color</button>
           </section>
         </main>
+        <section>
+          <ul>
+            {this.state.color.map(color => {
+              return (
+                <li
+                  style={{
+                    backgroundColor: `${color}`,
+                    color: `${this.state.colorOfText}`
+                  }}>
+                  {color}
+                </li>
+              )
+            })}
+          </ul>
+        </section>
       </>
     )
   }
