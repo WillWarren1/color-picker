@@ -101,13 +101,15 @@ class App extends Component {
           <ul>
             {this.state.color.map(color => {
               return (
-                <li
-                  style={{
-                    backgroundColor: `${color}`,
-                    color: `${this.state.colorOfText}`
-                  }}>
-                  {color}
-                </li>
+                <>
+                  <figure
+                    className="colorthing"
+                    style={{
+                      backgroundColor: `${color}`
+                    }}
+                  />
+                  <li>{color}</li>
+                </>
               )
             })}
           </ul>
