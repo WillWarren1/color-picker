@@ -10,6 +10,7 @@ export default function ColorPicker(props) {
   const [backgroundLightness, setbackgroundLightness] = useState(
     Math.floor(Math.random() * 100)
   )
+  const [color, setColor] = useState([])
 
   const randomColor = () => {
     setbackgroundHue(Math.floor(Math.random() * 240))
@@ -17,7 +18,6 @@ export default function ColorPicker(props) {
     setbackgroundLightness(Math.floor(Math.random() * 100))
   }
   // const [colorOfText, setcolorOfText] = useState('')
-  // const [color, setColor] = useState([])
 
   // state = {
   //   backgroundHue: '196',
@@ -27,15 +27,13 @@ export default function ColorPicker(props) {
   //   color: []
   // }
 
-  // addColorToDOM = () => {
-  //   this.setState({
-  //     color: this.state.color.concat(
-  //       `hsl(${this.state.backgroundHue}, ${
-  //         this.state.backgroundSaturation
-  //       }%, ${this.state.backgroundLightness}%)`
-  //     )
-  //   })
-  // }
+  const addColorToDOM = () => {
+    setColor(oldColor =>
+      oldColor.concat(
+        `hsl(${backgroundHue}, ${backgroundSaturation}%, ${backgroundLightness}%)`
+      )
+    )
+  }
 
   // updateHue = event => {
   //   this.setState({
@@ -108,26 +106,26 @@ export default function ColorPicker(props) {
             max="100"
           />
           <button onClick={randomColor}>Randomize</button>
-          {/* <button onClick={this.addColorToDOM}>Save Color</button> */}
+          <button onClick={addColorToDOM}>Save Color</button>
         </section>
       </main>
-      {/* <section>
-          <ul>
-            {this.state.color.map(color => {
-              return (
-                <>
-                  <figure
-                    className="colorthing"
-                    style={{
-                      backgroundColor: `${color}`
-                    }}
-                  />
-                  <li>{color}</li>
-                </>
-              )
-            })}
-          </ul>
-        </section> */}
+      <section>
+        <ul>
+          {color.map(colors => {
+            return (
+              <section key={colors}>
+                <figure
+                  className="colorthing"
+                  style={{
+                    backgroundColor: `${colors}`
+                  }}
+                />
+                <li>{colors}</li>
+              </section>
+            )
+          })}
+        </ul>
+      </section>
     </>
   )
 }
