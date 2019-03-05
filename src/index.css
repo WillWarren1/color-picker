@@ -23,6 +23,10 @@ section {
   margin-top: 2rem;
 }
 
+header {
+  text-align: center;
+}
+
 input {
   max-width: 300px;
 }
@@ -41,4 +45,8 @@ ul {
 
 li {
   margin-top: 1.75rem;
+}
+
+p {
+  text-align: center;
 }
