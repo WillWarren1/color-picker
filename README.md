@@ -13,3 +13,4 @@ I used [React.js](https://reactjs.org/) to organize my code and write the progra
 The text editor I used was [VS Code](https://code.visualstudio.com/).
 
 ![alt text] (https://github.com/WillWarren1/color-picker/blob/master/src/readmeimg/colorpicker.gif "example gif")
+<img src='url(https://github.com/WillWarren1/color-picker/blob/master/src/readmeimg/colorpicker.gif)'
